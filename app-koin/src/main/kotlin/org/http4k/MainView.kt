@@ -23,9 +23,6 @@ fun MainView(viewModel: MainViewModel) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = viewModel::callUsingFuel) {
-            Text(text = "Make fuel call")
-        }
         Button(onClick = viewModel::callUsingHttp4k) {
             Text(text = "Make http4k call")
         }

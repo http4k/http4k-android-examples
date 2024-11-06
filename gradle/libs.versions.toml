@@ -10,6 +10,7 @@ activityCompose = "1.8.0"
 composeBom = "2024.04.01"
 fuel = "2.3.1"
 http4k = "5.33.1.0"
+koin = "4.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,6 +33,9 @@ http4k-bom = { group = "org.http4k", name = "http4k-bom", version.ref = "http4k"
 http4k-core = { group = "org.http4k", name = "http4k-core"}
 http4k-format-jackson = { group = "org.http4k", name = "http4k-format-jackson"}
 http4k-client-okhttp = { group = "org.http4k", name = "http4k-client-okhttp"}
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
+koin-core = { group = "io.insert-koin", name = "koin-core" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
 
 
 [plugins]
