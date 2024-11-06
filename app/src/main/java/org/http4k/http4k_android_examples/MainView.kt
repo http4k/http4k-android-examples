@@ -23,7 +23,7 @@ fun MainView(viewModel: MainViewModel) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = { viewModel.updateState() }) {
+        Button(onClick = viewModel::callUsingFuel) {
             Text(text = "Make fuel call")
         }
         Text(

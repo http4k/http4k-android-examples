@@ -57,7 +57,10 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.fuel)
-//    implementation(libs.fuel.jackson)
+    implementation(libs.fuel.jackson)
+    implementation(platform(libs.http4k.bom))
+    implementation(libs.http4k.core)
+    implementation(libs.http4k.format.jackson)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
