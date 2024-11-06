@@ -31,6 +31,7 @@ fuel-jackson = { group = "com.github.kittinunf.fuel", name = "fuel-jackson", ver
 http4k-bom = { group = "org.http4k", name = "http4k-bom", version.ref = "http4k" }
 http4k-core = { group = "org.http4k", name = "http4k-core"}
 http4k-format-jackson = { group = "org.http4k", name = "http4k-format-jackson"}
+http4k-client-okhttp = { group = "org.http4k", name = "http4k-client-okhttp"}
 
 
 [plugins]

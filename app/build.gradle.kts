@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.fuel.jackson)
     implementation(platform(libs.http4k.bom))
     implementation(libs.http4k.core)
+    implementation(libs.http4k.client.okhttp)
     implementation(libs.http4k.format.jackson)
 
     testImplementation(libs.junit)

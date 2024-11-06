@@ -26,6 +26,9 @@ fun MainView(viewModel: MainViewModel) {
         Button(onClick = viewModel::callUsingFuel) {
             Text(text = "Make fuel call")
         }
+        Button(onClick = viewModel::callUsingHttp4k) {
+            Text(text = "Make http4k call")
+        }
         Text(
             text = uiState.value,
             modifier = Modifier.padding(top = 16.dp)
