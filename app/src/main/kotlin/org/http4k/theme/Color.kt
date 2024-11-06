@@ -1,4 +1,4 @@
-package org.http4k.http4k_android_examples.ui.theme
+package theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,4 @@
-package org.http4k.http4k_android_examples
+package org.http4k
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

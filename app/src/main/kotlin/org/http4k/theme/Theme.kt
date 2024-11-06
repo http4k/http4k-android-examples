@@ -1,6 +1,5 @@
-package org.http4k.http4k_android_examples.ui.theme
+package theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

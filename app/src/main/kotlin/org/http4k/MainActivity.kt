@@ -1,11 +1,11 @@
-package org.http4k.http4k_android_examples
+package org.http4k
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import org.http4k.http4k_android_examples.ui.theme.Http4kandroidexamplesTheme
+import theme.Http4kandroidexamplesTheme
 
 class MainActivity : ComponentActivity() {
     private val viewModel: MainViewModel by viewModels()

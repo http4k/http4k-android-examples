@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "org.http4k.http4k_android_examples"
+    namespace = "org.http4k"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "org.http4k.http4k_android_examples"
+        applicationId = "org.http4k"
         minSdk = 25
         targetSdk = 34
         versionCode = 1

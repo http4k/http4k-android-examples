@@ -1,4 +1,4 @@
-package org.http4k.http4k_android_examples
+package org.http4k
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
