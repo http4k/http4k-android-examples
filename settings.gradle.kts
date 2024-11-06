@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "http4k-android-examples"
 include(":app")
+include(":app-koin")
