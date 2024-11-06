@@ -22,9 +22,21 @@ android {
 
     buildTypes {
         release {
+            manifestPlaceholders += mapOf()
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("debug")
+            manifestPlaceholders["mainActivity"] = "org.http4k.MainActivity"
         }
+
+        create("inMemory") {
+            initWith(getByName("release"))
+            isDebuggable = true
+            applicationIdSuffix = ".inMemory"
+            signingConfig = signingConfigs.getByName("debug")
+            manifestPlaceholders["mainActivity"] = "org.http4k.TestActivity"
+        }
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
