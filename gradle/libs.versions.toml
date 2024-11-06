@@ -26,6 +26,7 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 fuel = { group = "com.github.kittinunf.fuel", name = "fuel-android", version.ref = "fuel" }
+fuel-jackson = { group = "com.github.kittinunf.fuel", name = "fuel-jackson", version.ref = "fuel" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
