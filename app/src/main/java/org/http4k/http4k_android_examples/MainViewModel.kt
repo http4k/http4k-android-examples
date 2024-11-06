@@ -15,20 +15,17 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.http4k.client.OkHttp
-import org.http4k.core.*
+import org.http4k.core.HttpMessage
 import org.http4k.core.Method.GET
-import org.http4k.filter.DebuggingFilters
+import org.http4k.core.Request
 import org.http4k.format.ConfigurableJackson
-import org.http4k.http4k_android_examples.Http4kJackson.auto
+import org.http4k.format.Jackson
 
 
 private data class UUIDResponse(val uuid: String)
 
 private val mapper = ObjectMapper().registerKotlinModule()
 
-private object Http4kJackson : ConfigurableJackson(mapper)
-
-private val lens = Body.auto<UUIDResponse>().toLens()
 
 class MainViewModel : ViewModel() {
 
@@ -49,15 +46,10 @@ class MainViewModel : ViewModel() {
     fun callUsingHttp4k() {
         _uiState.update { "Making call" }
 
-        val client = Filter.NoOp
-            .then(DebuggingFilters.PrintRequestAndResponse())
-            .then(OkHttp())
+        val client = OkHttp()
 
         viewModelScope.launch {
-            val result = withContext(Dispatchers.IO) {
-                val response = client(Request(GET, uuidEndpoint))
-                lens(response)
-            }
+            val result: UUIDResponse = withContext(Dispatchers.IO) { client(Request(GET, uuidEndpoint)).body() }
             _uiState.update { result.uuid }
         }
     }
@@ -66,5 +58,8 @@ class MainViewModel : ViewModel() {
         private const val uuidEndpoint = "https://httpbin.org/uuid"
     }
 }
+
+inline fun <reified T : Any> HttpMessage.body(autoMarshalling: ConfigurableJackson = Jackson) =
+    autoMarshalling.autoBody<T>().toLens()(this)
 
 
