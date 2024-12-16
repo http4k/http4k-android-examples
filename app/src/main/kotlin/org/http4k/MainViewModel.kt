@@ -1,27 +1,18 @@
 package org.http4k
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.jackson.responseObject
 import com.github.kittinunf.result.map
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.http4k.client.OkHttp
-import org.http4k.core.HttpMessage
 import org.http4k.core.Method.GET
 import org.http4k.core.Request
-import org.http4k.format.ConfigurableJackson
-import org.http4k.format.Jackson
-import org.http4k.format.Jackson.json
 
 
 private data class UUIDResponse(val uuid: String)
@@ -48,10 +39,9 @@ class MainViewModel : ViewModel() {
     fun callUsingHttp4k() {
         _uiState.update { "Making call" }
 
-        val client = OkHttp()
+        val client = AndroidClient(OkHttp())
 
-        viewModelScope.launch {
-            val result: UUIDResponse = withContext(IO) { client(Request(GET, uuidEndpoint)).json() }
+        client(Request(GET, uuidEndpoint)) { result: UUIDResponse ->
             _uiState.update { result.uuid }
         }
     }
@@ -60,5 +50,3 @@ class MainViewModel : ViewModel() {
         private const val uuidEndpoint = "https://httpbin.org/uuid"
     }
 }
-
-
