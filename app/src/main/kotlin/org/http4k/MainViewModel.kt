@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.update
 import org.http4k.client.OkHttp
 import org.http4k.core.Method.GET
 import org.http4k.core.Request
+import org.http4k.format.Jackson.json
 
 
 private data class UUIDResponse(val uuid: String)
@@ -44,6 +45,11 @@ class MainViewModel : ViewModel() {
         client(Request(GET, uuidEndpoint)) { result: UUIDResponse ->
             _uiState.update { result.uuid }
         }
+
+//        Another option:
+//
+//        val result: UUIDResponse = client(Request(GET, uuidEndpoint)).json()
+//        _uiState.update { result.uuid }
     }
 
     companion object {

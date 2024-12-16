@@ -9,8 +9,10 @@ import org.http4k.core.Response
 import org.http4k.format.Jackson.json
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+import java.util.concurrent.Future
+import java.util.concurrent.FutureTask
 
-class AndroidClient(val client: HttpHandler) : AsyncHttpHandler {
+class AndroidClient(val client: HttpHandler) : AsyncHttpHandler, HttpHandler {
     val executor = Executors.newCachedThreadPool { command ->
         Thread(command).also { thread ->
             thread.priority = Thread.NORM_PRIORITY
@@ -36,5 +38,11 @@ class AndroidClient(val client: HttpHandler) : AsyncHttpHandler {
             val response = client(request)
             callbackExecutor.execute { fn(response.json()) }
         }
+    }
+
+    override fun invoke(request: Request): Response {
+        val responsePromise = FutureTask { client(request) }
+        executor.execute(responsePromise)
+        return responsePromise.get()
     }
 }
