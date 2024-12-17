@@ -1,6 +1,7 @@
 package org.http4k
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.github.kittinunf.fuel.Fuel
@@ -40,7 +41,7 @@ class MainViewModel : ViewModel() {
     fun callUsingHttp4k() {
         _uiState.update { "Making call" }
 
-        val client = AndroidClient(OkHttp())
+        val client = CoroutineClient(OkHttp(), viewModelScope)
 
         client(Request(GET, uuidEndpoint)) { result: UUIDResponse ->
             _uiState.update { result.uuid }
