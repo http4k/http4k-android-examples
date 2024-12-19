@@ -19,7 +19,7 @@ import org.http4k.format.Jackson
 import org.http4k.format.Jackson.json
 
 
-private data class UUIDResponse(val uuid: String)
+data class UUIDResponse(val uuid: String)
 
 class MainViewModel(private val client: HttpHandler) : ViewModel() {
 

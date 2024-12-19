@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import org.http4k.client.OkHttp
-import org.http4k.core.HttpHandler
+import http4k.externalApis
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
-import org.koin.core.module.dsl.bind
-import org.koin.core.module.dsl.withOptions
+import org.koin.core.qualifier.qualifier
 import org.koin.dsl.module
 import theme.Http4kandroidexamplesTheme
 
@@ -21,7 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         startKoin {
             androidContext(this@MainActivity)
-            modules(mainModule)
+            modules(externalApis, viewModels)
         }
 
         enableEdgeToEdge()
@@ -33,7 +31,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-val mainModule = module {
-    single { OkHttp() } withOptions { bind<HttpHandler>() }
-    factory { MainViewModel(get()) }
+val viewModels = module {
+    factory { MainViewModel(get(qualifier("httpbin"))) }
 }
